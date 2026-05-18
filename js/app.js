@@ -1,6 +1,64 @@
 (function () {
   'use strict';
 
+
+  function initAgeGate() {
+    var ageKey = 'smola_age_confirmed_current_visit';
+
+    if (sessionStorage.getItem(ageKey) === 'yes') {
+      return;
+    }
+
+    var gate = document.createElement('section');
+    gate.className = 'age-gate';
+    gate.setAttribute('role', 'dialog');
+    gate.setAttribute('aria-modal', 'true');
+    gate.setAttribute('aria-labelledby', 'age-gate-title');
+    gate.innerHTML = [
+      '<div class="age-gate-panel" data-age-panel>',
+      '  <img class="age-gate-logo" src="img/logo-smola-age.png" alt="СМОЛА.паб">',
+      '  <h1 class="age-gate-title" id="age-gate-title">18+</h1>',
+      '  <p class="age-gate-text">Сайт содержит информацию о крафтовых напитках. Подтвердите, что вам уже исполнилось 18 лет.</p>',
+      '  <div class="age-gate-actions">',
+      '    <button class="button button-primary" type="button" data-age-confirm>Мне есть 18</button>',
+      '    <button class="button button-secondary" type="button" data-age-deny>Мне нет 18</button>',
+      '  </div>',
+      '</div>'
+    ].join('');
+
+    document.body.appendChild(gate);
+    document.body.classList.add('age-gate-locked');
+
+    var confirmButton = gate.querySelector('[data-age-confirm]');
+    var denyButton = gate.querySelector('[data-age-deny]');
+    var panel = gate.querySelector('[data-age-panel]');
+
+    if (confirmButton) {
+      confirmButton.focus();
+      confirmButton.addEventListener('click', function () {
+        sessionStorage.setItem(ageKey, 'yes');
+        gate.hidden = true;
+        document.body.classList.remove('age-gate-locked');
+      });
+    }
+
+    if (denyButton && panel) {
+      denyButton.addEventListener('click', function () {
+        sessionStorage.removeItem(ageKey);
+        panel.classList.add('is-blocked');
+        panel.innerHTML = [
+          '<img class="age-gate-logo" src="img/logo-smola-age.png" alt="СМОЛА.паб">',
+          '<h1 class="age-gate-title">18+</h1>',
+          '<p class="age-gate-text">Доступ к сайту закрыт, потому что материалы предназначены только для пользователей старше 18 лет.</p>',
+          '<p class="age-gate-warning">Вернуться на сайт нельзя без подтверждения возраста.</p>'
+        ].join('');
+        document.body.classList.add('age-gate-locked');
+      });
+    }
+  }
+
+  initAgeGate();
+
   var navToggle = document.querySelector('[data-nav-toggle]');
   var nav = document.querySelector('[data-nav]');
 

@@ -101,17 +101,18 @@ button, input, textarea, select { font: inherit; }
 .section-muted { background: #efe3d4; }
 .eyebrow { margin: 0 0 10px; color: var(--color-accent); font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.82rem; }
 h1, h2, h3 { margin: 0; line-height: 1.1; }
-h1 { font-size: clamp(2.4rem, 7vw, 5.4rem); letter-spacing: -0.055em; }
+h1 { font-size: clamp(2.15rem, 5.4vw, 4.25rem); letter-spacing: -0.045em; }
 h2 { font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -0.04em; }
 h3 { font-size: 1.25rem; }
 p { margin: 0; }
 
 .hero { padding: 90px 0 84px; }
-.hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: center; }
-.hero-lead { max-width: 680px; margin-top: 24px; font-size: clamp(1.08rem, 2vw, 1.35rem); color: rgba(255,250,242,0.82); }
+.hero-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 58px; align-items: center; }
+.hero-lead { max-width: 620px; margin-top: 22px; font-size: clamp(1rem, 1.45vw, 1.16rem); color: rgba(255,250,242,0.82); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
 .age-note { margin-top: 18px; color: rgba(255,250,242,0.62); font-size: 0.92rem; }
-.hero-card { position: relative; padding: 18px; border-radius: 34px; background: linear-gradient(145deg, #2c241f, #151210); box-shadow: 0 20px 60px rgba(0,0,0,0.25); }
+.hero-card { position: relative; padding: 0; border-radius: 34px; background: linear-gradient(145deg, #2c241f, #151210); box-shadow: 0 20px 60px rgba(0,0,0,0.25); overflow: hidden; }
+.hero-photo { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
 .status-card { position: absolute; right: 30px; bottom: 30px; padding: 16px 18px; background: rgba(255,250,242,0.92); color: var(--color-dark); border-radius: 18px; box-shadow: var(--shadow); }
 .status-card span { display: block; color: var(--color-muted); font-size: 0.9rem; }
 .status-card strong { display: block; font-size: 1.2rem; }
@@ -182,6 +183,66 @@ input, textarea, select { width: 100%; border: 1px solid var(--color-border); bo
 .footer-grid a { display: block; margin-top: 8px; text-decoration: none; }
 .footer-logo { color: #fffaf2; margin-bottom: 14px; }
 .footer-bottom { display: flex; justify-content: space-between; gap: 20px; }
+
+/* Age gate */
+body.age-gate-locked { overflow: hidden; }
+.age-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(18, 16, 14, 0.94);
+  color: #fffaf2;
+}
+.age-gate[hidden] { display: none; }
+.age-gate-panel {
+  width: min(100%, 560px);
+  padding: clamp(28px, 5vw, 46px);
+  border-radius: 30px;
+  background: #fffaf2;
+  color: var(--color-dark);
+  text-align: center;
+  box-shadow: 0 30px 90px rgba(0,0,0,0.45);
+  border: 1px solid rgba(217,122,43,0.32);
+}
+.age-gate-logo {
+  width: min(210px, 70vw);
+  margin: 0 auto 18px;
+}
+.age-gate-title {
+  margin: 0;
+  font-size: clamp(3rem, 10vw, 5.2rem);
+  line-height: 1;
+  letter-spacing: -0.06em;
+}
+.age-gate-text {
+  max-width: 440px;
+  margin: 16px auto 0;
+  color: var(--color-muted);
+  font-size: 1rem;
+}
+.age-gate-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 26px;
+  flex-wrap: wrap;
+}
+.age-gate .button-secondary {
+  color: var(--color-dark);
+  box-shadow: inset 0 0 0 1px rgba(18,16,14,0.24);
+}
+.age-gate .button-secondary:hover { background: rgba(18,16,14,0.06); }
+.age-gate-warning {
+  margin-top: 18px;
+  color: #a12714;
+  font-weight: 800;
+}
+@media (max-width: 560px) {
+  .age-gate-actions { flex-direction: column; }
+}
 
 @media (max-width: 860px) {
   :root { --header-height: 92px; }
