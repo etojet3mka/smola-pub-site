@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Бронирование столов в СМОЛА.паб. Учебная форма с клиентской валидацией.">
+  <meta name="theme-color" content="#fffaf2">
+  <title>Бронирование — СМОЛА.паб</title>
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="img/favicon.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+<header class="site-header" data-header>
+  <div class="container header-inner header-centered">
+    <nav class="desktop-nav nav-left" aria-label="Основная навигация слева">
+      <a href="about.html">О бренде</a>
+      <a href="menu.html">Меню</a>
+    </nav>
+
+    <a class="logo logo-centered" href="index.html" aria-label="СМОЛА.паб — главная">
+      <img class="brand-logo-img" src="img/logo-smola-header.png" alt="" width="210" height="140" loading="eager">
+      <span class="visually-hidden">СМОЛА.паб</span>
+    </a>
+
+    <nav class="desktop-nav nav-right" aria-label="Основная навигация справа">
+      <a href="events.html">Афиша</a>
+      <a href="booking.html" aria-current="page">Бронь</a>
+    </nav>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-nav-toggle>
+      <span></span><span></span><span></span>
+      <span class="visually-hidden">Открыть меню</span>
+    </button>
+    <nav class="main-nav" id="main-nav" data-nav>
+      <a href="index.html">Главная</a>
+      <a href="about.html">О бренде</a>
+      <a href="menu.html">Меню</a>
+      <a href="events.html">Афиша</a>
+      <a href="booking.html" aria-current="page">Бронь</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <section class="page-hero section-dark">
+    <div class="container narrow">
+      <p class="eyebrow">Бронирование</p>
+      <h1>Оставьте заявку на стол</h1>
+      <p>Форма создана для курсового проекта. Она проверяет поля на стороне браузера и показывает сообщение об успешной отправке.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container form-layout">
+      <form class="booking-form" action="#" method="post" data-booking-form novalidate>
+        <div class="form-row">
+          <label for="name">Имя</label>
+          <input id="name" name="name" type="text" autocomplete="name" required minlength="2" placeholder="Артём">
+          <small class="error" data-error-for="name"></small>
+        </div>
+        <div class="form-row">
+          <label for="phone">Телефон</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" required pattern="^[0-9+()\-\s]{7,}$" placeholder="+7 900 000-00-00">
+          <small class="error" data-error-for="phone"></small>
+        </div>
+        <div class="form-grid">
+          <div class="form-row">
+            <label for="date">Дата</label>
+            <input id="date" name="date" type="date" required>
+            <small class="error" data-error-for="date"></small>
+          </div>
+          <div class="form-row">
+            <label for="time">Время</label>
+            <input id="time" name="time" type="time" required min="16:00" max="23:30">
+            <small class="error" data-error-for="time"></small>
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="guests">Количество гостей</label>
+          <select id="guests" name="guests" required>
+            <option value="">Выберите</option>
+            <option>1–2</option><option>3–4</option><option>5–6</option><option>7+</option>
+          </select>
+          <small class="error" data-error-for="guests"></small>
+        </div>
+        <div class="form-row">
+          <label for="comment">Комментарий</label>
+          <textarea id="comment" name="comment" rows="4" placeholder="Например: стол у окна"></textarea>
+        </div>
+        <label class="checkbox-row">
+          <input type="checkbox" name="age" required>
+          <span>Мне есть 18 лет, и я согласен с обработкой данных для связи по заявке.</span>
+        </label>
+        <small class="error" data-error-for="age"></small>
+        <button class="button button-primary" type="submit">Отправить заявку</button>
+        <p class="success-message" data-success-message hidden>Заявка принята. Это учебная заглушка, данные никуда не отправлены.</p>
+      </form>
+      <aside class="info-panel">
+        <h2>Контакты</h2>
+        <p><strong>Адрес:</strong> Смоленск, ул. Примерная, 67</p>
+        <p><strong>Время работы:</strong> 16:00–02:00</p>
+        <p><strong>Телефон:</strong> +7 900 000-00-00</p>
+        <div class="map-placeholder" role="img" aria-label="Схематичная карта расположения паба в Смоленске">Карта<br>Смоленск</div>
+      </aside>
+    </div>
+  </section>
+</main>
+<footer class="site-footer"><div class="container footer-bottom"><p>© 2026 СМОЛА.паб. Учебный проект.</p><p>18+</p></div></footer>
+<script src="js/app.js" defer></script>
+</body>
+</html>
