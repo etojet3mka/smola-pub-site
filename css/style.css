@@ -203,6 +203,10 @@ p { margin: 0; }
   transform: translateY(-8px) rotate(-2deg) scale(1.03);
   filter: drop-shadow(0 24px 28px rgba(0, 0, 0, 0.28));
 }
+.product-bottle--honey {
+  width: min(90%, 290px);
+  max-height: 410px;
+}
 .product-card-body {
   display: grid;
   gap: 12px;
@@ -212,6 +216,7 @@ p { margin: 0; }
 @media (max-width: 560px) {
   .product-card-media { min-height: 280px; }
   .product-bottle { max-height: 300px; width: min(70%, 220px); }
+  .product-bottle--honey { width: min(82%, 250px); max-height: 330px; }
 }
 .product-card strong, .menu-item strong { font-size: 1.25rem; color: var(--color-accent-dark); }
 .tag { display: inline-flex; width: fit-content; margin-bottom: 10px; padding: 4px 10px; border-radius: 999px; background: rgba(217, 122, 43, 0.14); color: var(--color-accent-dark); font-weight: 800; font-size: 0.8rem; }
