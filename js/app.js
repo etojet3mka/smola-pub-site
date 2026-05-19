@@ -121,6 +121,38 @@
     });
   }
 
+  var tiltCards = Array.prototype.slice.call(document.querySelectorAll('[data-tilt-card]'));
+
+  tiltCards.forEach(function (card) {
+    var media = card.querySelector('.product-card-media');
+    var bottle = card.querySelector('.product-bottle');
+
+    function resetTilt() {
+      card.style.transform = '';
+      if (bottle) bottle.style.transform = '';
+    }
+
+    card.addEventListener('mousemove', function (event) {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var rect = card.getBoundingClientRect();
+      var x = event.clientX - rect.left;
+      var y = event.clientY - rect.top;
+      var rotateY = ((x / rect.width) - 0.5) * 10;
+      var rotateX = (0.5 - (y / rect.height)) * 8;
+      card.style.transform = 'perspective(900px) rotateX(' + rotateX.toFixed(2) + 'deg) rotateY(' + rotateY.toFixed(2) + 'deg) translateY(-6px)';
+      if (bottle) {
+        var bottleRotate = rotateY * 0.35;
+        bottle.style.transform = 'translateY(-10px) rotate(' + bottleRotate.toFixed(2) + 'deg) scale(1.03)';
+      }
+      if (media) {
+        media.style.backgroundPosition = (50 + rotateY * 0.8) + '% ' + (50 - rotateX * 0.8) + '%';
+      }
+    });
+
+    card.addEventListener('mouseleave', resetTilt);
+    card.addEventListener('blur', resetTilt, true);
+  });
+
   var bookingForm = document.querySelector('[data-booking-form]');
   var successMessage = document.querySelector('[data-success-message]');
 
